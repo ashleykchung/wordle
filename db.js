@@ -11,4 +11,10 @@ const db = new sqlite.Database(dbFile, (error) => {
 
 const checkGuess = (request, response) => {
   const guess = request.charAt()
+
 }
+
+
+module.exports = {
+  checkGuess
+};

@@ -32,12 +32,11 @@ app.use((req, res, next) => {
 });
 
 // endpoints
+app.get("/", (req, res) => {
+  res.json({ info: "Demo app for sqlite3" });
+});
 
-app.get("/guess", (req, res) => {
-  const guess = req.body.guess
-
-
-})
+app.get("/guess", db.checkGuess);
 
 app.listen(PORT, () => {
   console.log(`listening on PORT ${PORT}`)

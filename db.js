@@ -10,7 +10,12 @@ const db = new sqlite.Database(dbFile, (error) => {
 });
 
 const checkGuess = (request, response) => {
-  const guess = request.charAt()
+
+  const guess = request.body.guess;
+  //for (let i = 0; i < guess.length; i++) {
+   // if()
+   // guess.charAt
+  //}
 
 }
 

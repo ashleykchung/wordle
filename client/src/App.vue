@@ -1,15 +1,49 @@
 <template>
-  <HelloWorld msg="YIN SUCKS 21 Balls"/>
+  <Grid :words="wordList"></Grid>
+  {{ currentWord }}
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Grid from '@/components/Grid/Grid.vue'
+import Keyboard from '@/components/Keyboard/Keyboard.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Grid, Keyboard,
+  },
+  data(){
+    return{
+      words: ["hello", "daily", "kinds", "creat"],
+      keys: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'],
+      currentWord: 'forks',
+  }},
+  computed: {
+    wordList() {
+      const newWords = [...this.words, this.currentWord]
+      return Array.from({ length: 6 }, (_, idx) => 
+        newWords[idx] ? newWords[idx] : ""
+      )
+    }
+  },
+created() {
+  document.addEventListener('keydown', this.handleKeyboard)
+},
+methods: {
+  handleKeyboard(event){
+    if (event.repeat) return;
+    if(/^[a-z()]$/i.test(event.key)){
+      this.currentWord += event.key
+    }
+    if(event.keyCod == 46){
+      this.currentWord = this.currentWord.substring(0, -1)
+    }
+    if(event.key == 'return'){
+
+    }
+
   }
+}
 }
 </script>
 

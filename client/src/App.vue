@@ -1,6 +1,6 @@
 <template>
   <Grid :words="wordList"></Grid>
-  {{ currentWord }}
+  <Keyboard/>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   },
   data(){
     return{
-      words: ["hello", "daily", "kinds", "creat"],
+      words: ["hello", "daily", ],
       keys: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'],
       currentWord: 'forks',
   }},
@@ -35,11 +35,12 @@ methods: {
     if(/^[a-z()]$/i.test(event.key)){
       this.currentWord += event.key
     }
-    if(event.keyCod == 46){
-      this.currentWord = this.currentWord.substring(0, -1)
+    if(event.key == "Backspace"){
+      this.currentWord = this.currentWord.slice(0, -1)
     }
-    if(event.key == 'return'){
-
+    if(event.key == 'Enter'){
+      this.words = [...this.words, this.currentWord]
+      this.currentWord = ''
     }
 
   }

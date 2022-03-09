@@ -6,6 +6,7 @@
 <script>
 import Grid from '@/components/Grid/Grid.vue'
 import Keyboard from '@/components/Keyboard/Keyboard.vue'
+import http from require("@/http-common")
 
 export default {
   name: 'App',
@@ -39,8 +40,20 @@ methods: {
       this.currentWord = this.currentWord.slice(0, -1)
     }
     if(event.key == 'Enter'){
-      this.words = [...this.words, this.currentWord]
-      this.currentWord = ''
+      // this.words = [...this.words, this.currentWord]
+      // this.currentWord = ''
+
+      http
+        .get("/")
+        .then(response => console.log(response))
+        .catch(console.error)
+
+      // for implementing isValid
+      const guess = hello
+      http
+      .get(`/isValid/${guess}`)
+      .then(response => console.log(response.data))
+      .catch(err => console.log(err))
     }
 
   }
